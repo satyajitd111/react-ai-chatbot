@@ -1,29 +1,38 @@
 import { useRef } from 'react';
 
-export const ChatForm = ({ setChatHistory }) => {
+export const ChatForm = ({
+  chatHistory,
+  setChatHistory,
+  generateBotResponse
+}) => {
   const inputRef = useRef(null);
-  console.log('satya123', inputRef);
+  // console.log('satya123', inputRef);
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
     const userMessage = inputRef.current.value.trim();
     if (!userMessage) return;
 
-    console.log(`User message: ${userMessage}`);
-    console.log('satya', inputRef);
+    // console.log(`User message: ${userMessage}`);
+    // console.log('satya', inputRef);
+    // Update chat history with user message
     setChatHistory((history) => [
       ...history,
       { role: 'user', text: userMessage }
     ]);
+    //  Delay 600 ms before showing 'Thinking...' message and generating bot response
+    setTimeout(() => {
+      setChatHistory((history) => [
+        ...history,
+        { role: 'model', text: 'Thinking...' }
+      ]);
+      //  call the function to generate bot response
+      generateBotResponse([
+        ...chatHistory,
+        { role: 'user', text: userMessage }
+      ]);
+    }, 600);
 
-    setTimeout(
-      () =>
-        setChatHistory((history) => [
-          ...history,
-          { role: 'model', text: 'Thinking...' }
-        ]),
-      600
-    );
     inputRef.current.value = '';
   };
 
