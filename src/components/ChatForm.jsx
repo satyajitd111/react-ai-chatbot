@@ -1,28 +1,43 @@
-import React from 'react';
+import { useRef } from 'react';
 
-export const ChatForm = () => {
+export const ChatForm = ({ setChatHistory }) => {
+  const inputRef = useRef(null);
+  console.log('satya123', inputRef);
+
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    const input = event.target.querySelector('.message-input');
-    const message = input.value.trim();
+    const userMessage = inputRef.current.value.trim();
+    if (!userMessage) return;
 
-    if (message) {
-      // Here you would typically handle the message, e.g., send it to a server or update state
-      console.log('Message sent:', message);
-      input.value = ''; // Clear the input field after sending
-    }
+    console.log(`User message: ${userMessage}`);
+    console.log('satya', inputRef);
+    setChatHistory((history) => [
+      ...history,
+      { role: 'user', text: userMessage }
+    ]);
+
+    setTimeout(
+      () =>
+        setChatHistory((history) => [
+          ...history,
+          { role: 'model', text: 'Thinking...' }
+        ]),
+      600
+    );
+    inputRef.current.value = '';
   };
 
   return (
     <div>
       <form action='#' className='chat-form' onSubmit={handleFormSubmit}>
         <input
+          ref={inputRef}
           type='text'
           placeholder='Message..'
           className='message-input'
           required
         />
-        <button class='material-symbols-rounded'>arrow_upward</button>
+        <button className='material-symbols-rounded'>arrow_upward</button>
       </form>
     </div>
   );
