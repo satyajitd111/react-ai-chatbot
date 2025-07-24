@@ -7,6 +7,7 @@ import { generateBotResponse } from './util/helper';
 
 const App = () => {
   const [chatHistory, setChatHistory] = useState([]);
+  const [showChatBot, setShowChatBot] = useState(false);
   const chatBodyRef = useRef(null);
 
   useEffect(() => {
@@ -18,7 +19,16 @@ const App = () => {
   }, [chatHistory]);
   // console.log('Chat History:', chatHistory);
   return (
-    <div className='container'>
+    <div className={`container ${showChatBot ? 'show-chatbot' : ''}`}>
+      <button
+        onClick={() => setShowChatBot((show) => !show)}
+        className=''
+        id='chatbot-toggle'
+      >
+        <span className='material-symbols-rounded'>mode_comment</span>
+        <span className='material-symbols-rounded'>close</span>
+      </button>
+
       <div className='chatbot-popup'>
         {/* ChatBot Header */}
 
@@ -27,7 +37,10 @@ const App = () => {
             <ChatbotIcon />
             <h2 className='logo-text'>Chatbot</h2>
           </div>
-          <button className='material-symbols-rounded'>
+          <button
+            onClick={() => setShowChatBot((show) => !show)}
+            className='material-symbols-rounded'
+          >
             keyboard_arrow_down
           </button>
         </div>
