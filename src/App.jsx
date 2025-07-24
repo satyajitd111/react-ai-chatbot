@@ -4,9 +4,12 @@ import { ChatbotIcon } from './components/ChatbotIcon';
 import { ChatForm } from './components/ChatForm';
 import { ChatMessage } from './components/ChatMessage';
 import { generateBotResponse } from './util/helper';
+import { personalInfo } from './data/personalInfo';
 
 const App = () => {
-  const [chatHistory, setChatHistory] = useState([]);
+  const [chatHistory, setChatHistory] = useState([
+    { hideInChat: true, role: 'user', text: personalInfo }
+  ]);
   const [showChatBot, setShowChatBot] = useState(false);
   const chatBodyRef = useRef(null);
 

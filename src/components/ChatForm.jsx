@@ -29,7 +29,10 @@ export const ChatForm = ({
       //  call the function to generate bot response
       generateBotResponse([
         ...chatHistory,
-        { role: 'user', text: userMessage }
+        {
+          role: 'user',
+          text: `using the details provided above, please address this query: ${userMessage}`
+        }
       ]);
     }, 600);
 
