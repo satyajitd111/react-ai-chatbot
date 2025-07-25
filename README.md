@@ -1,12 +1,85 @@
-# React + Vite
+🤖 React ChatBot – Portfolio Assistant
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A smart and interactive AI-powered chatbot built with React and powered by Gemini SDK, designed to guide users through the portfolio of Satyajit Das. This bot answers questions, provides project summaries, and offers a personalized experience for visitors.
 
-Currently, two official plugins are available:
+✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+    🔍 Smart Q&A: Answers user queries about your portfolio using natural language.
 
-## Expanding the ESLint configuration
+    🧠 Powered by Gemini: Uses Google’s Gemini SDK for generating contextual and relevant responses.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+    💬 Persistent Chat UI: Smooth and responsive chat interface with message history.
+
+    🖼️ Project-aware Responses: Understands and summarizes your listed projects dynamically.
+
+    🧩 Modular Components: Clean component-based architecture using React best practices.
+
+🛠️ Tech Stack
+
+    Frontend: React, Vite
+
+    AI Integration: Gemini 2.5 Flash via Google Generative Language API
+
+    Styling: CSS, Inter font
+
+    State Management: useState, useEffect
+
+📁 Folder Structure
+
+react-chat-bot/
+├── public/
+│ └── vite.svg
+├── src/
+│ ├── components/
+│ │ ├── ChatbotIcon.jsx
+│ │ ├── ChatForm.jsx
+│ │ └── ChatMessage.jsx
+│ ├── data/
+│ │ └── personalInfo.js # Contains bot persona and portfolio details
+│ ├── util/
+│ │ └── helper.jsx # Handles Gemini API response logic
+│ ├── App.jsx
+│ ├── index.css
+│ ├── main.jsx
+├── .env # API key goes here
+├── .gitignore
+├── index.html
+├── vite.config.js
+├── eslint.config.js
+├── package.json
+├── package-lock.json
+└── README.md
+
+🚀 Getting Started
+
+1. Clone the Repository
+
+git clone https://github.com/satyajitd111/react-ai-chatbot.git
+cd react-chat-bot
+
+2. Install Dependencies
+
+npm install
+
+3. Add Your API Key
+
+Create a .env file at the root:
+
+VITE_API_KEY=your-gemini-api-key
+
+4. Run the Project
+
+npm run dev
+
+The app will be available at http://localhost:5173.
+🧪 Sample Prompts
+
+    “Tell me more about the AI Chatbot project.”
+
+    “Which tech stack does Satyajit use?”
+
+    “What are some of his recent projects?”
+
+🤝 Contributing
+
+Contributions are welcome! Open a PR with improvements or ideas.
