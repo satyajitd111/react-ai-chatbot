@@ -35,9 +35,9 @@ react-chat-bot/
 │ │ ├── ChatForm.jsx
 │ │ └── ChatMessage.jsx
 │ ├── data/
-│ │ └── personalInfo.js # Contains bot persona and portfolio details
+│ │ └── personalInfo.js
 │ ├── util/
-│ │ └── helper.jsx # Handles Gemini API response logic
+│ │ └── helper.jsx
 │ ├── App.jsx
 │ ├── index.css
 │ ├── main.jsx
