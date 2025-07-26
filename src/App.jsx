@@ -1,10 +1,10 @@
-// import { useState } from 'react';
 import React, { useEffect, useRef, useState } from "react";
 import { ChatbotIcon } from "./components/ChatbotIcon";
 import { ChatForm } from "./components/ChatForm";
 import { ChatMessage } from "./components/ChatMessage";
 import { generateBotResponse } from "./util/helper";
 import { personalInfo } from "./data/personalInfo";
+import styles from "./Chatbot.module.css";
 
 const App = () => {
   const [chatHistory, setChatHistory] = useState([
@@ -14,31 +14,32 @@ const App = () => {
   const chatBodyRef = useRef(null);
 
   useEffect(() => {
-    //Auto scroll to the bottom of chat body when new messages are added
+    // Auto scroll to the bottom of chat body when new messages are added
     chatBodyRef.current.scrollTo({
       top: chatBodyRef.current.scrollHeight,
       behavior: "smooth",
     });
   }, [chatHistory]);
-  // console.log('Chat History:', chatHistory);
+
   return (
-    <div className={`container ${showChatBot ? "show-chatbot" : ""}`}>
+    <div
+      className={`${styles.container} ${showChatBot ? styles.showChatbot : ""}`}
+    >
+      {/* Toggle Chatbot Visibility */}
       <button
         onClick={() => setShowChatBot((show) => !show)}
-        className=""
-        id="chatbot-toggle"
+        id={styles.chatbotToggle}
       >
         <span className="material-symbols-rounded">mode_comment</span>
         <span className="material-symbols-rounded">close</span>
       </button>
 
-      <div className="chatbot-popup">
+      <div className={styles.chatbotPopup}>
         {/* ChatBot Header */}
-
-        <div className="chat-header">
-          <div className="header-info">
+        <div className={styles.chatHeader}>
+          <div className={styles.headerInfo}>
             <ChatbotIcon />
-            <h2 className="logo-text">Assistant</h2>
+            <h2 className={styles.logoText}>Assistant</h2>
           </div>
           <button
             onClick={() => setShowChatBot((show) => !show)}
@@ -47,25 +48,27 @@ const App = () => {
             keyboard_arrow_down
           </button>
         </div>
+
         {/* ChatBot Body */}
-        <div ref={chatBodyRef} className="chat-body">
-          <div className="message bot-message">
+        <div ref={chatBodyRef} className={styles.chatBody}>
+          {/* Initial Welcome Message */}
+          <div className={`${styles.message} ${styles.botMessage}`}>
             <ChatbotIcon />
-            <p className="message-text">
+            <p className={styles.messageText}>
               👋 Hi there! Welcome to Satyajit Das’s portfolio.
             </p>
           </div>
+
           {/* Render chat history dynamically */}
           {chatHistory.map((chat, index) => (
             <ChatMessage key={index} chat={chat} idx={index} />
           ))}
 
           {/* ChatBot Footer */}
-          <div className="chat-footer">
+          <div className={styles.chatFooter}>
             <ChatForm
               chatHistory={chatHistory}
               setChatHistory={setChatHistory}
-              // generateBotResponse={generateBotResponse}
               generateBotResponse={(history) =>
                 generateBotResponse(history, setChatHistory)
               }

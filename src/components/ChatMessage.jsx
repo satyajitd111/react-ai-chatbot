@@ -1,17 +1,22 @@
-import React from 'react';
-import { ChatbotIcon } from './ChatbotIcon';
+import React from "react";
+import { ChatbotIcon } from "./ChatbotIcon";
+import styles from "../Chatbot.module.css";
 
 export const ChatMessage = ({ chat }) => {
+  // Render nothing if the message is marked to be hidden
   return (
     !chat.hideInChat && (
       <>
         <div
-          className={`message ${
-            chat.role === 'model' ? 'bot' : 'user'
-          }-message`}
+          className={`${styles.message} ${
+            chat.role === "model" ? styles.botMessage : styles.userMessage
+          }`}
         >
-          {chat.role === 'model' && <ChatbotIcon />}
-          <p className='message-text'>{chat.text}</p>
+          {/* Render the bot icon only for model-generated messages */}
+          {chat.role === "model" && <ChatbotIcon />}
+
+          {/* Render the actual chat text */}
+          <p className={styles.messageText}>{chat.text}</p>
         </div>
       </>
     )
